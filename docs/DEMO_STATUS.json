@@ -1,0 +1,43 @@
+{
+  "project": {
+    "id": "demo",
+    "goal": "Verify deterministic local orchestration",
+    "budget_microusd": 1000000,
+    "allow_external": false,
+    "phase": "created",
+    "decisions": [],
+    "artifacts": [],
+    "created_at": "2026-09-28T21:02:58.349163+00:00"
+  },
+  "tasks": 2,
+  "statuses": {
+    "COMPLETED": 2
+  },
+  "jobs": {
+    "default": {
+      "COMPLETED": 2
+    }
+  },
+  "execution_modes": {
+    "mock": 2
+  },
+  "completed": [
+    "count",
+    "normalize"
+  ],
+  "outstanding": [],
+  "blockers": [],
+  "spend": {
+    "by_tier_microusd": {
+      "JEV": 0,
+      "SOL": 0,
+      "ASTRA": 0,
+      "HIGGSFIELD": 0,
+      "OTHER": 0,
+      "BLENDER": 0
+    },
+    "total_microusd": 0,
+    "reserved_microusd": 0
+  },
+  "budget_remaining_microusd": 1000000
+}

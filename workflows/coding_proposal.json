@@ -1,0 +1,44 @@
+{
+  "tasks": [
+    {
+      "id": "inspect-fixture",
+      "workflow_id": "coding-proposal",
+      "job_id": "proposal-1",
+      "description": "Normalize the small supplied specification deterministically.",
+      "task_type": "json_normalize",
+      "inputs": {
+        "text": "{\"function\":\"slugify\",\"requirements\":[\"lowercase\",\"spaces become hyphens\",\"trim surrounding whitespace\"]}"
+      }
+    },
+    {
+      "id": "propose",
+      "workflow_id": "coding-proposal",
+      "job_id": "proposal-1",
+      "description": "Propose Python code for slugify and representative tests. Return a text proposal; do not claim files were changed or tests were executed.",
+      "task_type": "coding",
+      "capabilities": [
+        "code_proposal"
+      ],
+      "dependencies": [
+        "inspect-fixture"
+      ],
+      "validators": [
+        {
+          "type": "contains",
+          "value": "slugify"
+        }
+      ]
+    },
+    {
+      "id": "review-proposal",
+      "workflow_id": "coding-proposal",
+      "job_id": "proposal-1",
+      "description": "Review the slugify proposal and its edge cases after human inspection. Identify which tests still need execution.",
+      "task_type": "coding",
+      "dependencies": [
+        "propose"
+      ],
+      "requires_approval": true
+    }
+  ]
+}

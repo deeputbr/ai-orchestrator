@@ -1,0 +1,30 @@
+{
+  "tasks": [
+    {
+      "id": "candidate-set",
+      "description": "Propose a concise set of mutually distinct options for the project goal. Give every option a short lowercase identifier and a description.",
+      "task_type": "generation",
+      "risk": "LOW",
+      "complexity": "MEDIUM"
+    },
+    {
+      "id": "question-plan",
+      "description": "Using the candidate-set dependency, return a JSON object with one key named questions. Its value must be a TypeSafe question map containing: a Choice named best_option whose criteria exactly match the candidate identifiers; a Noul named acceptable_risk; and a Score named overall_fit with 3 to 5 ordered levels. Use only type, instructions, and criteria fields. Return this JSON text in result and an empty notes array.",
+      "task_type": "generation",
+      "dependencies": ["candidate-set"],
+      "risk": "LOW",
+      "complexity": "MEDIUM",
+      "validators": [{"type": "json"}]
+    },
+    {
+      "id": "jev-evaluation",
+      "description": "Evaluate the generated candidates using the generated, runtime-validated question pack.",
+      "task_type": "jev_decision",
+      "dependencies": ["candidate-set", "question-plan"],
+      "inputs": {
+        "state": {"goal": "Choose the option with the strongest quality, practicality, reversibility, and cost balance."},
+        "questions_from_dependency": "question-plan"
+      }
+    }
+  ]
+}

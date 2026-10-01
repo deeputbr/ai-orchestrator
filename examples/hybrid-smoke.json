@@ -1,0 +1,9 @@
+{
+  "tasks": [{
+    "id": "hybrid-check",
+    "description": "Return result exactly HYBRID_OK and notes as an empty array. No tools are needed.",
+    "risk": "LOW",
+    "complexity": "LOW",
+    "validators": [{"type": "equals", "value": "HYBRID_OK"}]
+  }]
+}

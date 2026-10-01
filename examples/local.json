@@ -1,0 +1,1 @@
+{"tasks":[{"id":"count","description":"Count words locally","task_type":"word_count","inputs":{"text":"Local code before models"}},{"id":"normalize","description":"Normalize a JSON document","task_type":"json_normalize","dependencies":["count"],"inputs":{"text":"{\"ok\":true}"}}]}

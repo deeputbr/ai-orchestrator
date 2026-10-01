@@ -1,0 +1,40 @@
+Verification checkpoint: 2026-09-29
+Environment: Python 3.13.3, macOS
+
+python3 -m unittest discover -v
+Ran 70 tests in 1.543s
+OK
+
+python3 -m compileall -q orchestrator tests
+Exit 0
+
+Separate-process CLI coverage:
+- Create/import/run/status/export for deterministic operations
+- Content workflow pause/approve/resume
+- Coding proposal workflow pause/approve/resume
+- Sol-candidate to typed Jev-decision workflow in offline/mock mode
+- Rejection of forged runtime fields and unknown projects
+
+Hybrid contract coverage:
+- Batched Jev Choice, Score and Noul requests and typed responses
+- Static question packs and validated questions loaded from dependency output
+- Direct Jev decisions consume dependency state without an extra generation call
+- Default live profile combines Jev routing with ChatGPT-authenticated Sol/Astra
+
+Live subscription smoke test:
+- ChatGPT-authenticated bundled Codex runtime, requested model gpt-6-sol
+- Structured result SUBSCRIPTION_OK; validation passed
+- Provider-reported usage: 8,946 input tokens, 21 output tokens, 0 cached tokens
+- Integration total that reached the model: 17,838 input tokens, 42 output tokens across two calls; the first was rejected because runtime warning events were not yet allowlisted
+- OPENAI_API_KEY removed from the child environment; no Jev call
+- Local USD cost and remaining account allowance: unavailable/null
+
+Live Jev, Astra and direct OpenAI API calls: NOT RUN
+Direct provider API spend during development: $0
+
+Persistent local demo:
+Project demo; 2 tasks COMPLETED
+Word count result: 4
+Normalized JSON result: {"ok": true}
+Provider attempts: 0
+See DEMO_STATUS.json. Runtime DB remains in ignored .orchestrator/.

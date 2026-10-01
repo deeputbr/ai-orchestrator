@@ -1,0 +1,41 @@
+{
+  "tasks": [
+    {
+      "id": "candidate-strategies",
+      "description": "Propose exactly three concise implementation strategies labeled A, B, and C. Explain the main benefit and risk of each.",
+      "task_type": "generation",
+      "risk": "LOW",
+      "complexity": "MEDIUM"
+    },
+    {
+      "id": "choose-strategy",
+      "description": "Use typed Jev judgments to choose and score the generated candidates.",
+      "task_type": "jev_decision",
+      "dependencies": ["candidate-strategies"],
+      "inputs": {
+        "state": {"goal": "Prefer a practical, reversible strategy with a strong quality-to-cost ratio."},
+        "questions": {
+          "best_candidate": {
+            "type": "choice",
+            "instructions": "Which labeled candidate best satisfies the goal?",
+            "criteria": {
+              "a": "Candidate A in the supplied dependency output",
+              "b": "Candidate B in the supplied dependency output",
+              "c": "Candidate C in the supplied dependency output"
+            }
+          },
+          "is_reversible": {
+            "type": "noul",
+            "instructions": "The best candidate can be reversed without significant loss.",
+            "criteria": {"true": "Straightforward to undo", "false": "Difficult or costly to undo"}
+          },
+          "quality_cost_balance": {
+            "type": "score",
+            "instructions": "Rate the best candidate's quality-to-cost balance.",
+            "criteria": ["Poor", "Acceptable", "Strong", "Exceptional"]
+          }
+        }
+      }
+    }
+  ]
+}

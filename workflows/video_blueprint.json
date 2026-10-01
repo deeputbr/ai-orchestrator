@@ -1,0 +1,75 @@
+{
+  "status": "DESIGN_ONLY_NOT_EXECUTABLE",
+  "stages": [
+    {
+      "id": "research",
+      "requires_future_adapter": false,
+      "approval_required": false
+    },
+    {
+      "id": "source_triage",
+      "requires_future_adapter": false,
+      "approval_required": false
+    },
+    {
+      "id": "synthesis",
+      "requires_future_adapter": false,
+      "approval_required": false
+    },
+    {
+      "id": "script",
+      "requires_future_adapter": false,
+      "approval_required": false
+    },
+    {
+      "id": "review",
+      "requires_future_adapter": false,
+      "approval_required": false
+    },
+    {
+      "id": "scene_breakdown",
+      "requires_future_adapter": false,
+      "approval_required": false
+    },
+    {
+      "id": "asset_routing",
+      "requires_future_adapter": false,
+      "approval_required": false
+    },
+    {
+      "id": "asset_generation",
+      "requires_future_adapter": true,
+      "approval_required": true
+    },
+    {
+      "id": "visual_qa",
+      "requires_future_adapter": true,
+      "approval_required": false
+    },
+    {
+      "id": "video_assembly",
+      "requires_future_adapter": true,
+      "approval_required": false
+    },
+    {
+      "id": "preview",
+      "requires_future_adapter": true,
+      "approval_required": false
+    },
+    {
+      "id": "final_qa",
+      "requires_future_adapter": true,
+      "approval_required": false
+    },
+    {
+      "id": "human_approval",
+      "requires_future_adapter": false,
+      "approval_required": true
+    },
+    {
+      "id": "final_render",
+      "requires_future_adapter": true,
+      "approval_required": true
+    }
+  ]
+}

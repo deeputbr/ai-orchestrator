@@ -1,0 +1,47 @@
+{
+  "tasks": [
+    {
+      "id": "outline",
+      "workflow_id": "content-draft",
+      "job_id": "draft-1",
+      "description": "Create an Outline for a short explainer on deterministic code versus model calls. Use the supplied brief.",
+      "task_type": "content",
+      "inputs": {
+        "brief": "Audience: solo builders. Explain that exact word counts should be local and drafting uses a generative model."
+      },
+      "validators": [
+        {
+          "type": "contains",
+          "value": "Outline"
+        }
+      ]
+    },
+    {
+      "id": "script",
+      "workflow_id": "content-draft",
+      "job_id": "draft-1",
+      "description": "Create a Script from the outline with an opening, example and conclusion. Avoid unsupported factual claims.",
+      "task_type": "content",
+      "dependencies": [
+        "outline"
+      ],
+      "validators": [
+        {
+          "type": "contains",
+          "value": "Script"
+        }
+      ]
+    },
+    {
+      "id": "editorial-review",
+      "workflow_id": "content-draft",
+      "job_id": "draft-1",
+      "description": "Review the script after human approval, list concrete issues and propose changes. This does not publish or render.",
+      "task_type": "content",
+      "dependencies": [
+        "script"
+      ],
+      "requires_approval": true
+    }
+  ]
+}
