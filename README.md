@@ -4,6 +4,23 @@ A reusable, local-first Python core that chooses deterministic code, Jev, GPT-6 
 
 **Current release:** Milestones 1–4 implemented and tested, plus the minimal dependency engine needed to exercise them. Live Sol execution through the ChatGPT-authenticated Codex runtime was verified on 2026-09-29 without an OpenAI API key. Jev and the optional direct OpenAI API backend remain fixture-tested but live-unverified. Full repository editing, creative applications and video production are later milestones.
 
+## Use the dashboard — no commands needed
+
+On macOS, double-click **Start Orchestrator.app** in this repository. It opens a Terminal status window, starts the local app, and opens your browser at **http://127.0.0.1:8765**. Keep the launcher in the repository folder. Python 3.11+ must already be installed; no additional runtime packages are needed. **Start Orchestrator.command** is an alternative launcher that shows the server log in a Terminal window. On Linux, use **Start Orchestrator.desktop** from the repository folder (your desktop may require marking it as trusted).
+
+In the dashboard:
+
+1. Choose **New project**, describe your goal, and set an API budget in dollars.
+2. Add a workflow from the library, edit its unrun tasks, or use **Add task** for your own writing, local processing, or Jev choices.
+3. Select **Simulation** to try the workflow without provider calls. Local operations produce real results; AI outputs are marked **SIMULATED**.
+4. For live work, open **Connections & setup**, enter your Jev token, and check the connection. The primary profile uses your existing ChatGPT/Codex sign-in for Sol/Astra.
+5. Enable external sharing in **Project settings**, choose **Live**, and review the live-run confirmation. Use fresh tasks for live AI work after a simulation.
+6. Review results, approve explicit requests, recheck paused tasks after fixing their cause, and download task results or a project snapshot.
+
+The UI updates progress automatically, retains the core's budget/privacy/approval gates, and shows API estimates separately from ChatGPT subscription calls. Your Jev token is held only in memory until the app stops; it is not saved to disk. Projects persist locally in `.orchestrator/state.sqlite3`. Use **Connections & setup → Stop local app** to shut it down. Reopening the launcher opens the existing app when it is already running.
+
+See the [dashboard user guide](docs/USER_GUIDE.md) for a walkthrough. Optional developer launch: `python3 -m orchestrator.web --open` or, after installing, `orchestrator-ui --open`. The web interface binds only to `127.0.0.1` and serves its assets locally.
+
 ## Start in under a minute
 
 Requires Python 3.11+ on macOS/Linux. No runtime packages, API keys or network access needed:
@@ -164,13 +181,14 @@ Budget checks include both recorded charges and unresolved reservations. A requi
 
 Open this repository in a ChatGPT Work/Codex local project. The Work window can inspect `status`, import a workflow, run the CLI, read outputs and summarize blockers through its local execution tools. For Sol/Astra, the default live backend reuses the installed Codex runtime's ChatGPT sign-in, so it consumes the shared ChatGPT/Codex allowance and does not need `OPENAI_API_KEY`. The orchestrator never reads or copies OAuth credentials and has no API fallback.
 
-This release does not register a Work plugin/MCP server, expose an HTTP server, or control the Work UI. Jev requires the token you provide; Sol/Astra do not require a separate OpenAI API key in the primary profile.
+The local dashboard provides an HTTP interface on this computer. This release does not register a Work plugin/MCP server or control the Work UI. Jev requires the token you provide; Sol/Astra do not require a separate OpenAI API key in the primary profile.
 
 ## Repository map
 
 - `orchestrator/core`: records, state, configuration, routing, costs, context, validators, engine and human actions.
 - `orchestrator/adapters`: ChatGPT/Codex, direct OpenAI API, Jev, injectable transport and explicit offline mocks.
 - `orchestrator/cli`: command interface.
+- `orchestrator/web`: local dashboard, background runner, and browser assets.
 - `workflows`: runnable text, coding-proposal and Sol→Jev decision samples, plus a clearly marked future video blueprint.
 - `tests`: offline unit, provider contract, engine, transport and CLI tests.
 - `docs`: plan, architecture decisions, adapter extension guide, documentation sources and implementation status.

@@ -70,6 +70,9 @@ class Store:
             raise ValueError(f"Unknown project: {project_id}")
         return Project(**json.loads(row[0]))
 
+    def projects(self):
+        return [Project(**json.loads(row[0])) for row in self.db.execute("SELECT data FROM projects ORDER BY rowid DESC")]
+
     def add_tasks(self, project_id, tasks):
         self.project(project_id)
         existing = {t.id: t for t in self.tasks(project_id)}

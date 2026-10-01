@@ -1,5 +1,7 @@
 # Implementation checkpoint — 2026-09-29
 
+Update 2026-10-01: v0.4.0 adds a local browser dashboard and desktop launchers. Projects, workflows, custom tasks (including Jev choices), pre-run edits, asynchronous runs, results, approvals, rechecking, reconciliation, connection checks, session-only Jev token entry, budgets, sharing settings, and downloads are available through the UI. See [the user guide](USER_GUIDE.md) and [ADR 004](ADR-004-local-dashboard.md). Live Jev validation still awaits the user's token.
+
 | Milestone | Status | Evidence / remaining work |
 | --- | --- | --- |
 | 1 Bootstrap | Implemented | Python package, CLI, TOML, typed records, SQLite, local operations, tests |

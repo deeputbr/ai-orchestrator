@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=AI Orchestrator
+Comment=Open the local personal AI dashboard
+Terminal=false
+Exec=sh -c 'cd "$(dirname "$1")" && python3 -m orchestrator.web --open' sh %k
+Icon=applications-development
+Categories=Development;

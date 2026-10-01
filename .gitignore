@@ -10,3 +10,5 @@ dist/
 .orchestrator/
 *.sqlite*
 .DS_Store
+.playwright-cli/
+output/

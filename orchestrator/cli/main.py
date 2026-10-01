@@ -11,6 +11,7 @@ from orchestrator.adapters.codex import CodexAdapter
 from orchestrator.adapters.base import AdapterError
 from orchestrator.core.control import approve, resume, reconcile
 from pathlib import Path
+from orchestrator.core.workflows import import_tasks
 
 
 def parser():
@@ -99,17 +100,7 @@ def main(argv=None):
             elif args.command == "add":
                 with open(args.file) as stream:
                     data = json.load(stream)
-                allowed = {"id", "description", "task_type", "workflow_id", "job_id", "parent_task", "risk", "complexity", "capabilities", "dependencies", "context_files", "inputs", "validators", "metadata", "sensitive", "requires_approval"}
-                for item in data["tasks"]:
-                    if set(item) - allowed:
-                        raise ValueError("Workflow contains runtime state fields")
-                    if set(item.get("metadata", {})) - {"architecture", "security", "irreversible", "routing_reviewed", "context_sufficient", "user"}:
-                        raise ValueError("Only declared routing flags and user metadata may be imported")
-                tasks = [Task(**(t | {"project_id": args.project})) for t in data["tasks"]]
-                if any(t.status != "PENDING" or t.approved or t.attempts for t in tasks):
-                    raise ValueError("Imported tasks must be new and unapproved")
-                store.add_tasks(args.project, tasks)
-                result = {"added": len(tasks)}
+                result = import_tasks(store, args.project, data)
             elif args.command == "run":
                 result = Engine(store, Settings.load(args.config), live=args.live, context_root=args.context_root).run_locked(args.project)
             elif args.command == "approve":

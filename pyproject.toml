@@ -4,13 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "personal-ai-orchestrator"
-version = "0.3.0"
+version = "0.4.0"
 description = "Local-first, budget-aware personal AI orchestration"
 requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
 orchestrator = "orchestrator.cli.main:main"
+orchestrator-ui = "orchestrator.web.server:main"
 
 [tool.setuptools.packages.find]
 include = ["orchestrator*"]
+
+[tool.setuptools.package-data]
+"orchestrator.web" = ["static/*.html", "static/*.css", "static/*.js", "static/*.svg"]
